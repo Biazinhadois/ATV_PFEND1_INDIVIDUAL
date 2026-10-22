@@ -33,6 +33,7 @@ export default function AcervoPage() {
         <>
             <main>
                 <div className={styles.acervoContainer}>
+                    <a href="./" className={styles.voltar}>Voltar</a>
                     <h1 className={styles.titles}>
                         Acervo:
                     </h1>
@@ -53,7 +54,7 @@ export default function AcervoPage() {
                         )}
                     </div>
                 </div>
-            </main >
+            </main>
         </>
     );
 }
