@@ -1,0 +1,28 @@
+
+.btnalterar {
+  background-color: #800e13;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 100px;
+  margin-bottom: 7px;
+}
+
+.btnalterar:hover {
+  background-color: #B30009;
+  cursor: pointer;
+}
+
+.btnexcluir {
+  background-color: #800e13;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.btnexcluir:hover {
+  background-color: #B30009;
+  cursor: pointer;
+}

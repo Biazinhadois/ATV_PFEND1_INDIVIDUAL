@@ -45,6 +45,7 @@ li {
 }
 
 .login a {
+    margin-left: auto;
     border-radius: 8px;
     margin-right: 50;
     background: #B30009;
@@ -55,20 +56,12 @@ li {
 }
 
 /* Links do menu */
-li a,
-.dropbtn {
+li a {
     display: block;
     color: #ffffff;
     padding: 13px 20px;
     text-decoration: none;
     text-align: center;
-}
-
-.dropbtn {
-    border-radius: 30px;
-    font-size: 19px;
-    font-style: normal;
-    margin-left: 1348px;
 }
 
 
@@ -77,40 +70,4 @@ li a:hover,
 .dropdown:hover .dropbtn {
     background: #B30009;
     border-radius: 8px;
-}
-
-/* Caixa do dropdown */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left:93%;
-    background: #B30009;
-    min-width: 160px;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-/* Links dentro do dropdown */
-.dropdown-content a {
-    display: block;
-    color: #ffffff;
-    text-align: left;
-    font-style: normal;
-}
-
-/* Hover dos itens do dropdown */
-.dropdown-content a:hover {
-    background: #800E13;
-}
-
-/* Mostrar dropdown */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.singr a {
-    font-weight: bold;
-    color: white;
-    padding: 13px 20px;
 }
