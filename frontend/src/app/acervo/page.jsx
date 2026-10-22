@@ -37,7 +37,8 @@ export default function AcervoPage() {
                         Acervo:
                     </h1>
 
-                    <div className="row row-cols-1 row-cols-md-3 g-4">
+                    <div className="row row-cols-1 row-cols-md-3 g-4 justify-content-center align-items-center"
+                        style={{ marginLeft: '150px' }}>
                         {vinis.length === 0 ? (
                             <p className="mensagem-vazia">Nenhum vinil cadastrado ainda.</p>
                         ) : (
@@ -52,7 +53,7 @@ export default function AcervoPage() {
                         )}
                     </div>
                 </div>
-            </main>
+            </main >
         </>
     );
 }
