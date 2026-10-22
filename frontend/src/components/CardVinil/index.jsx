@@ -9,12 +9,12 @@ export default function VinilCard({ vinil, deletarVinil }) {
     return (
         <div className="card" style={{ width: "23rem" }}>
             <div className="card-body">
-                <img 
-                    src={vinil.imagem && vinil.imagem !== 'ainda colocar' ? vinil.imagem : "../imagens/slide1.png"} 
-                    className="card-img" 
-                    alt={vinil.vinilNome} 
+                <img
+                    src={vinil.imagem && vinil.imagem !== '' ? vinil.imagem : "../imagens/slide1.png"}
+                    className="card-img"
+                    alt={vinil.vinilNome}
                 />
-                
+
                 <div className="d-flex justify-content-between align-items-center">
                     <div style={{ backgroundColor: raridadeCor, borderRadius: "5px", padding: "1px 6px", color: "white", fontWeight: "bold", fontSize: "0.75rem", marginTop: "10px" }}>
                         {vinil.raridade}
@@ -33,9 +33,11 @@ export default function VinilCard({ vinil, deletarVinil }) {
                 <p className="fs-5 fw-bold text-success">R$ {vinil.preco}</p>
             </div>
 
-            <button type="button" className={styles.btnalterar}>
-                Alterar
-            </button>
+            <Link href={`../editar/id=${vinil.id}`}>
+                <button className={styles.btnalterar}>
+                    Alterar
+                </button>
+            </Link>
             <button type="button" className={styles.btnexcluir} onClick={() => deletarVinil(vinil.id)}>
                 Excluir
             </button>

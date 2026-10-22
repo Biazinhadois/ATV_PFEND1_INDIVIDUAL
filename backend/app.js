@@ -36,17 +36,19 @@ const uploadImagem = multer({
 app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(uploadDir));
+app.use('/imagens', express.static(path.join(path.dirname(fileURLToPath(import.meta.url)), '../frontend/public/imagens')));
 
 let listaVinis = [
     {
         id: 1,
         artista: 'Adela',
-        vinilNome: 'Aint in LA',
+        vinilNome: 'Prima',
         categoria: 'Pop',
         raridade: 'Rara',
         quantidade: 2,
         preco: 120,
-        imagem: '../img/adela.png'
+        assinado: true,
+        imagem: '/imagens/adela.png'
     },
     {
         id: 2,
@@ -56,7 +58,8 @@ let listaVinis = [
         raridade: 'Lendária',
         quantidade: 1,
         preco: 250,
-        imagem: '../img/midnight.png'
+        assinado: false,
+        imagem: '/imagens/midnight.png'
     },
     {
         id: 3,
@@ -66,7 +69,8 @@ let listaVinis = [
         raridade: 'Comum',
         quantidade: 4,
         preco: 180,
-        imagem: '../img/daftpunk.png'
+        assinado: false,
+        imagem: '/imagens/daftpunk.png'
     },
     {
         id: 4,
@@ -76,7 +80,129 @@ let listaVinis = [
         raridade: 'Rara',
         quantidade: 3,
         preco: 195,
-        imagem: '../img/chappell.png'
+        assinado: true,
+        imagem: '/imagens/chappell.png'
+    },
+    {
+        id: 5,
+        artista: 'Tame Impala',
+        vinilNome: 'Currents',
+        categoria: 'Alternativo',
+        raridade: 'Rara',
+        quantidade: 2,
+        preco: 210,
+        assinado: false,
+        imagem: '/imagens/tameimpala.png'
+    },
+    {
+        id: 6,
+        artista: 'Laufey',
+        vinilNome: 'Bewitched',
+        categoria: 'Jazz',
+        raridade: 'Lendária',
+        quantidade: 1,
+        preco: 230,
+        assinado: true,
+        imagem: '/imagens/laufey.png'
+    },
+    {
+        id: 7,
+        artista: 'The Weeknd',
+        vinilNome: 'After Hours',
+        categoria: 'R&B',
+        raridade: 'Comum',
+        quantidade: 5,
+        preco: 160,
+        assinado: false,
+        imagem: '/imagens/theweeknd.png'
+    },
+    {
+        id: 8,
+        artista: 'Tyler, The Creator',
+        vinilNome: 'Call Me If You Get Lost',
+        categoria: 'Hip Hop',
+        raridade: 'Rara',
+        quantidade: 3,
+        preco: 200,
+        assinado: true,
+        imagem: '/imagens/tyler.png'
+    },
+    {
+        id: 9,
+        artista: 'Billie Eilish',
+        vinilNome: 'Hit Me Hard and Soft',
+        categoria: 'Pop',
+        raridade: 'Rara',
+        quantidade: 3,
+        preco: 215,
+        assinado: false,
+        imagem: '/imagens/billie.png'
+    },
+    {
+        id: 10,
+        artista: 'Arctic Monkeys',
+        vinilNome: 'AM',
+        categoria: 'Rock',
+        raridade: 'Comum',
+        quantidade: 6,
+        preco: 150,
+        assinado: false,
+        imagem: '/imagens/arctic.png'
+    },
+    {
+        id: 11,
+        artista: 'Lana Del Rey',
+        vinilNome: 'Norman Fucking Rockwell!',
+        categoria: 'Alternativo',
+        raridade: 'Lendária',
+        quantidade: 1,
+        preco: 280,
+        assinado: true,
+        imagem: '/imagens/lana.png'
+    },
+    {
+        id: 12,
+        artista: 'Fleetwood Mac',
+        vinilNome: 'Rumours',
+        categoria: 'Rock',
+        raridade: 'Rara',
+        quantidade: 4,
+        preco: 190,
+        assinado: false,
+        imagem: '/imagens/fleetwood.png'
+    },
+    {
+        id: 13,
+        artista: 'Frank Ocean',
+        vinilNome: 'Blonde',
+        categoria: 'R&B',
+        raridade: 'Lendária',
+        quantidade: 1,
+        preco: 320,
+        assinado: true,
+        imagem: '/imagens/frankocean.png'
+    },
+    {
+        id: 14,
+        artista: 'Kanye West',
+        vinilNome: 'Graduation',
+        categoria: 'Hip Hop',
+        raridade: 'Rara',
+        quantidade: 2,
+        preco: 240,
+        assinado: false,
+        imagem: '/imagens/kanye.png'
+    },
+    {
+        id: 15,
+        artista: 'Pink Floyd',
+        vinilNome: 'The Dark Side of the Moon',
+        categoria: 'Rock',
+        raridade: 'Comum',
+        quantidade: 5,
+        preco: 175,
+        assinado: false,
+        imagem: '/imagens/pinkfloyd.png'
     }
 ];
 
@@ -124,13 +250,14 @@ app.get('/api/vinil/:id', (req, res) => {
 });
 
 app.post('/api/vinil', (req, res) => {
-    const { artista, vinilNome, raridade, categoria, quantidade, imagem, preco } = req.body;
+    const { artista, vinilNome, raridade, categoria, quantidade, imagem, preco, assinado } = req.body;
 
     if (
         typeof artista !== 'string' || !artista.trim() ||
         typeof vinilNome !== 'string' || !vinilNome.trim() ||
         typeof categoria !== 'string' || !categoria.trim() ||
         typeof raridade !== 'string' || !raridade.trim() ||
+        typeof assinado !== 'boolean' ||
         !Number.isInteger(Number(quantidade)) || Number(quantidade) < 1 ||
         !Number.isInteger(Number(preco)) || Number(preco) < 1
     ) {
@@ -149,6 +276,7 @@ app.post('/api/vinil', (req, res) => {
         raridade: raridade.trim(),
         quantidade: Number(quantidade),
         preco: Number(preco),
+        assinado: Boolean(assinado),
         imagem: typeof imagem === 'string' && imagem.trim() ? imagem.trim() : ''
     };
 
@@ -167,13 +295,14 @@ app.put('/api/vinil/:id', (req, res) => {
         });
     }
 
-    const { artista, vinilNome, raridade, categoria, quantidade, imagem, preco } = req.body;
+    const { artista, vinilNome, raridade, categoria, quantidade, imagem, preco, assinado } = req.body;
 
     if (
         typeof artista !== 'string' || !artista.trim() ||
         typeof vinilNome !== 'string' || !vinilNome.trim() ||
         typeof categoria !== 'string' || !categoria.trim() ||
         typeof raridade !== 'string' || !raridade.trim() ||
+        typeof assinado !== 'boolean' ||
         !Number.isInteger(Number(quantidade)) || Number(quantidade) < 1 ||
         !Number.isInteger(Number(preco)) || Number(preco) < 1
     ) {
@@ -190,6 +319,7 @@ app.put('/api/vinil/:id', (req, res) => {
         raridade: raridade.trim(),
         quantidade: Number(quantidade),
         preco: Number(preco),
+        assinado: Boolean(assinado),
         imagem: typeof imagem === 'string' && imagem.trim()
             ? imagem.trim()
             : listaVinis[indice].imagem
